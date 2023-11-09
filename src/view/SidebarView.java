@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 
 public class SidebarView extends JPanel {
-    private static final String[] title = {"Search by keyword","Search by definition",
-    "view history", "add", "edit", "delete", "reset", "random",
-            "random keyword", "random definition"};
+    private static String[] title = {"SEARCH BY KEYWORD","SEARCH BY DEFINITION",
+            "VIEW HISTORY", "ADD", "EDIT", "DELETE", "RESET", "RANDOM",
+            "RANDOM KEYWORD", "RANDOM DEFINITION"};
     public SidebarView() {
         setName("Sidebar");
         MouseListener listener = new SidebarController();

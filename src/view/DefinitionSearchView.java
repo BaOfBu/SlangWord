@@ -67,7 +67,7 @@ public class DefinitionSearchView extends JPanel{
         else{
             datas = new String[keyword.size()][3];
             for(int i = 0; i<keyword.size();i++){
-                datas[i] = new String[]{Integer.toString(i), keyword.get(i), definition.get(i)};
+                datas[i] = new String[]{Integer.toString(i+1), keyword.get(i), definition.get(i)};
             }
             return true;
         }

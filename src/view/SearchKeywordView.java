@@ -74,6 +74,7 @@ public class SearchKeywordView extends JPanel {
                     searchWord = textField.getText();
                     boolean flag = setDatas();
                     if(flag){
+                        Program.history.addFirst(searchWord);
                         result.setModel(new DefaultTableModel(datas,columns));
                     }
 

@@ -6,9 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class SidebarController implements MouseListener {
-    private static String[] title = {"SLANG DICTIONARY","Search by keyword","Search by definition",
-            "view history", "add", "edit", "delete", "reset", "random",
-            "random keyword", "random definition"};
+    private static String[] title = {"SLANG DICTIONARY","SEARCH BY KEYWORD","SEARCH BY DEFINITION",
+            "VIEW HISTORY", "ADD", "EDIT", "DELETE", "RESET", "RANDOM",
+            "RANDOM KEYWORD", "RANDOM DEFINITION"};
     @Override
     public void mouseClicked(MouseEvent e) {
         String event = e.getComponent().getName();
@@ -17,12 +17,16 @@ public class SidebarController implements MouseListener {
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new HomepageView());
                 break;
             }
-            case("Search by keyword"):{
+            case("SEARCH BY KEYWORD"):{
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new SearchKeywordView());
                 break;
             }
-            case("Search by definition"):{
+            case("SEARCH BY DEFINITION"):{
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new DefinitionSearchView());
+                break;
+            }
+            case("VIEW HISTORY"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new HistoryView());
                 break;
             }
         }
