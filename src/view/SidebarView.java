@@ -15,8 +15,8 @@ public class SidebarView extends JPanel {
         MouseListener listener = new SidebarController();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setPreferredSize(new Dimension(300,800));
-        setMaximumSize(new Dimension(300,80));
-        setMinimumSize(new Dimension(25,80));
+//        setMaximumSize(new Dimension(300,80));
+//        setMinimumSize(new Dimension(25,80));
         addTitle(this,listener);
         for(String item: title){
             addAButton(item,this,listener);

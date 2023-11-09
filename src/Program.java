@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Program {
     HashMap<String,String> dictionary = new HashMap<String,String>();
     public Program() throws Exception{
-        BufferedReader fout = new BufferedReader(new FileReader(new File("slang.txt")));
+        BufferedReader fout = new BufferedReader(new FileReader(new File("resources/slang.txt")));
         fout.readLine(); // collumns' name
         String line;
         while ((line = fout.readLine()) != null) {

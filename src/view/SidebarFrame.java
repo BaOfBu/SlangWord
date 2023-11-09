@@ -27,7 +27,7 @@ public class SidebarFrame extends JFrame {
             sidebarFrame = this;
             pack();
             setLocationRelativeTo(null);
-            setExtendedState(JFrame.MAXIMIZED_BOTH);
+            setSize(1000,800);
             setVisible(true);
         }
     }
