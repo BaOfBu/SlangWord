@@ -37,6 +37,10 @@ public class SidebarController implements MouseListener {
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new DeleteView());
                 break;
             }
+            case("RESET"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new ResetView());
+                break;
+            }
         }
     }
 
