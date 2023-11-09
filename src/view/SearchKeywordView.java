@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SearchKeyword extends JPanel {
+public class SearchKeywordView extends JPanel {
     private String searchWord = null;
     private String[] columns = {"No.","Keyword","Definition"};
     private String[][] datas = new String[][]{};
@@ -20,7 +20,7 @@ public class SearchKeyword extends JPanel {
         result.setRowHeight(40);
         result.setFont(new Font("Serif", Font.BOLD, 20));
     }
-    public SearchKeyword(){
+    public SearchKeywordView(){
         setLayout(new BorderLayout());
         setTableSize();
 
@@ -97,16 +97,6 @@ public class SearchKeyword extends JPanel {
         result.getColumnModel().getColumn(2).setHeaderValue(columns[2]);
 
         String definition = Program.dictionary.get(searchWord);
-        System.out.println(definition);
-
-        if(definition == null){
-
-        }
-        else{
-            result.setValueAt(1,0,0);
-            result.setValueAt(searchWord,0,1);
-            result.setValueAt(definition,0,2);
-        }
 
         panel.add(new JScrollPane(result),BorderLayout.CENTER);
         panel.setSize(700,500);

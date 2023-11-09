@@ -1,9 +1,6 @@
 package controller;
 
-import view.HomepageView;
-import view.SearchKeyword;
-import view.SidebarFrame;
-import view.SidebarView;
+import view.*;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,11 +18,11 @@ public class SidebarController implements MouseListener {
                 break;
             }
             case("Search by keyword"):{
-                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new SearchKeyword());
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new SearchKeywordView());
                 break;
             }
             case("Search by definition"):{
-
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new DefinitionSearchView());
                 break;
             }
         }
