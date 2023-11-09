@@ -37,7 +37,7 @@ public class HistoryView extends JPanel{
 
     private JPanel addTitle(){
         JPanel title = new JPanel();
-        String text = "Search by keyword";
+        String text = "HISTORY";
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));

@@ -26,15 +26,19 @@ public class SidebarFrame extends JFrame {
             //Display the window.
             sidebarFrame = this;
             pack();
-            setLocationRelativeTo(null);
             setSize(1000,800);
+            setLocationRelativeTo(null);
             setVisible(true);
         }
     }
     public static JFrame getInstance(JPanel ContentReplace){
-        sidebarFrame.getContentPane().remove(content);
+        sidebarFrame.getContentPane().removeAll();
+        sidebarFrame.getContentPane().setLayout(new BorderLayout());
+        SidebarView sidebar = new SidebarView();
+        sidebarFrame.getContentPane().add(sidebar, BorderLayout.WEST);
         sidebarFrame.getContentPane().add(ContentReplace);
-        sidebarFrame.validate();
+        sidebarFrame.revalidate();
+        sidebarFrame.repaint();
         return sidebarFrame;
     }
 }

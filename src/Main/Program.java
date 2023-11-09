@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Program {
     public static HashMap<String,String> dictionary = new HashMap<String,String>();
+    public static HashMap<String,String> orgDictionary = new HashMap<String,String>();
     public static List<String> history = new ArrayList<String>();
     private static void ReadFile() throws Exception{
         BufferedReader fout = new BufferedReader(new FileReader(new File("resources/slang.txt")));
@@ -22,6 +23,7 @@ public class Program {
             String[] values = line.split("`");
             dictionary.put(values[0],values[1]);
         }
+        orgDictionary = (HashMap<String, String>) dictionary.clone();
         fout.close();
     }
     public static void main(String[] args) throws Exception {

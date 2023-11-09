@@ -8,11 +8,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SearchKeywordView extends JPanel {
+public class DeleteView extends JPanel {
+    private String[][] nullDatas = {};
     private String searchWord = null;
     private String[] columns = {"No.","Keyword","Definition"};
     private String[][] datas = new String[][]{};
-    JTable result = new JTable(5,3);
+    JTable result = new JTable(1,3);
 
     private void setTableSize(){
         result.setFillsViewportHeight(true);
@@ -20,7 +21,7 @@ public class SearchKeywordView extends JPanel {
         result.setRowHeight(40);
         result.setFont(new Font("Serif", Font.BOLD, 20));
     }
-    public SearchKeywordView(){
+    public DeleteView(){
         setLayout(new BorderLayout());
         setTableSize();
 
@@ -35,6 +36,7 @@ public class SearchKeywordView extends JPanel {
         container.add(addSearch());
         container.add(addResult());
         add(container,BorderLayout.CENTER);
+        add(addEdit(),BorderLayout.SOUTH);
     }
 
     private JPanel addTitle(){
@@ -60,25 +62,24 @@ public class SearchKeywordView extends JPanel {
     }
     private JPanel addSearch(){
         JPanel search = new JPanel(new FlowLayout());
-        search.setSize(700,200);
+        search.setSize(700,100);
         JTextField textField = new JTextField(32);
         textField.setFont(new Font("Serif", Font.BOLD, 20));
-        JButton buttonSearch = new JButton("Search keyword");
+        JButton buttonSearch = new JButton("Search");
         buttonSearch.setSize(150,100);
         buttonSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Search keyword")) {
+                if (s.equals("Search")) {
                     // set the text of the label to the text of the field
                     searchWord = textField.getText();
                     boolean flag = setDatas();
                     if(flag){
-                        Program.history.addFirst(searchWord);
                         result.setModel(new DefaultTableModel(datas,columns));
                     }
                     else{
-                        CantFindWordPopup temp = new CantFindWordPopup(searchWord);
+                        result.setModel(new DefaultTableModel(nullDatas,columns));
                     }
 
                     // set the text of field to blank
@@ -103,7 +104,30 @@ public class SearchKeywordView extends JPanel {
         String definition = Program.dictionary.get(searchWord);
 
         panel.add(new JScrollPane(result),BorderLayout.CENTER);
-        panel.setSize(700,500);
+        panel.setSize(700,200);
         return panel;
+    }
+
+    private JPanel addEdit(){
+        JPanel deletePanel = new JPanel(new FlowLayout());
+        deletePanel.setSize(700,100);
+        JButton deleteButton = new JButton("Delete");
+        deleteButton.setSize(150,100);
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s = e.getActionCommand();
+                if (s.equals("Delete")) {
+                    // set the text of the label to the text of the field
+                    ConfirmPopup confirmPopup = new ConfirmPopup(searchWord);
+
+                }
+            }
+        });
+        deletePanel.add(deleteButton);
+        JPanel container = new JPanel(new BorderLayout());
+        container.add(deletePanel);
+        container.setPreferredSize(new Dimension(700,100));
+        return container;
     }
 }

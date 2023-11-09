@@ -29,6 +29,14 @@ public class SidebarController implements MouseListener {
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new HistoryView());
                 break;
             }
+            case("EDIT"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new EditView());
+                break;
+            }
+            case("DELETE"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new DeleteView());
+                break;
+            }
         }
     }
 
