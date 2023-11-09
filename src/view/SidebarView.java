@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 
 public class SidebarView extends JPanel {
-    private static String[] title = {"Search by keyword","Search by definition",
+    private static final String[] title = {"Search by keyword","Search by definition",
     "view history", "add", "edit", "delete", "reset", "random",
             "random keyword", "random definition"};
     public SidebarView() {
@@ -17,16 +17,17 @@ public class SidebarView extends JPanel {
         setPreferredSize(new Dimension(300,800));
         setMaximumSize(new Dimension(300,80));
         setMinimumSize(new Dimension(25,80));
-        addTitle(this);
+        addTitle(this,listener);
         for(String item: title){
             addAButton(item,this,listener);
         }
     }
 
-    private void addTitle(Container container){
+    private void addTitle(Container container, MouseListener listener){
         JPanel button = new JPanel();
+        button.addMouseListener(listener);
         String text = "SLANG DICTIONARY";
-        button.setName(text);
+        button.setName("SLANG DICTIONARY");
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,20));
         button.setOpaque(true);

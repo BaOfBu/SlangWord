@@ -3,20 +3,12 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class HomepageView extends JFrame {
+public class HomepageView extends JPanel {
     public HomepageView(){
+        setLayout(new BorderLayout());
 
-        //Create and set up the window.
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Set up the content pane.
-        addComponentsToPane();
-
-        //Display the window.
-        pack();
-        setLocationRelativeTo(null);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setVisible(true);
+        // add credit
+        add(addCredit(),BorderLayout.CENTER);
     }
 
     private JPanel addCredit(){
@@ -31,13 +23,4 @@ public class HomepageView extends JFrame {
         return credit;
     }
 
-    public void addComponentsToPane() {
-        setLayout(new BorderLayout());
-        // add sidebar
-        SidebarView sidebar = new SidebarView();
-        add(sidebar, BorderLayout.WEST);
-
-        // add credit
-        add(addCredit(),BorderLayout.CENTER);
-    }
 }
