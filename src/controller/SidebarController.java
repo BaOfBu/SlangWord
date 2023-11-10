@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 public class SidebarController implements MouseListener {
     private static String[] title = {"SLANG DICTIONARY","SEARCH BY KEYWORD","SEARCH BY DEFINITION",
             "VIEW HISTORY", "ADD", "EDIT", "DELETE", "RESET", "RANDOM",
-            "RANDOM KEYWORD", "RANDOM DEFINITION"};
+            "RANDOM QUIZ KEYWORD", "RANDOM QUIZ DEFINITION"};
     @Override
     public void mouseClicked(MouseEvent e) {
         String event = e.getComponent().getName();
@@ -47,6 +47,10 @@ public class SidebarController implements MouseListener {
             }
             case("RANDOM"):{
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new RandomView());
+                break;
+            }
+            case("RANDOM QUIZ KEYWORD"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new RandomQuizKeywordView());
                 break;
             }
         }

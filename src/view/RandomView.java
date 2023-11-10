@@ -21,7 +21,7 @@ public class RandomView extends JPanel {
     private void randomInit(){
         int size = keyList.size();
         int randIdx = new Random().nextInt(size);
-        String randomWord = keyList.get(randIdx);
+        randomWord = keyList.get(randIdx);
     }
 
     private void setTableSize(){
@@ -55,7 +55,7 @@ public class RandomView extends JPanel {
 
     private JPanel addTitle(){
         JPanel title = new JPanel();
-        String text = "Search by keyword";
+        String text = "RANDOM SLANGWORD OF THE DAY";
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));
