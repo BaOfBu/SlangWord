@@ -67,7 +67,7 @@ public class RandomQuizDefinitionView extends JPanel {
 
     private JPanel addTitle(){
         JPanel title = new JPanel();
-        String text = "RANDOM QUIZ KEYWORD";
+        String text = "RANDOM QUIZ DEFINITION";
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));
@@ -81,6 +81,8 @@ public class RandomQuizDefinitionView extends JPanel {
         JLabel label = new JLabel();
         JButton randomButton = new JButton("RANDOM");
         randomButton.setSize(150,100);
+        label.setForeground(new Color(238, 78, 52));
+        label.setFont(new Font("Verdana", Font.BOLD,18));
         randomButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,15 +123,7 @@ public class RandomQuizDefinitionView extends JPanel {
                 }
             });
             button.setName(text);
-//            JLabel jlabel = new JLabel(text);
-//            jlabel.setName(text);
-//            jlabel.setForeground(Color.black);
-//            jlabel.setFont(new Font("Verdana", Font.BOLD,20));
-////            button.setOpaque(true);
-////            button.setBackground(Color.red);
-//            button.setBorder(BorderFactory.createLineBorder(Color.black));
-//            button.setAlignmentX(Component.CENTER_ALIGNMENT);
-//            button.add(jlabel);
+            button.setFont(new Font("Verdana", Font.BOLD,18));
             container.add(button);
         }
         container.setPreferredSize(new Dimension(700,400));

@@ -46,6 +46,8 @@ public class SearchKeywordView extends JPanel {
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));
+        jlabel.setForeground(new Color(0,0,0));
+        jlabel.setBackground(new Color(138, 170, 229));
         title.setSize(700,100);
         title.add(jlabel);
         return title;

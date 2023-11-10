@@ -20,7 +20,7 @@ public class Program {
         BufferedReader fout = new BufferedReader(new FileReader(new File("resources/slang.txt")));
         fout.readLine(); // columns' name
         String line;
-        while ((line = fout.readLine()) != null) {
+        while (!((line = fout.readLine()) == null)) {
             String[] values = line.split("`");
             List<String> temp = new ArrayList<String>(Arrays.asList(values[1].split("\\s*\\|\\s*")));
 

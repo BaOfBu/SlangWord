@@ -27,7 +27,7 @@ public class SuccessFailQuizPopup {
         UltimateContainer.add(containerCenter,BorderLayout.CENTER);
         frame.getContentPane().add(UltimateContainer);
         frame.pack();
-        frame.setSize(400,300);
+        frame.setSize(300,150);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 

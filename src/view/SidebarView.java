@@ -13,7 +13,7 @@ public class SidebarView extends JPanel {
     public SidebarView() {
         setName("Sidebar");
         MouseListener listener = new SidebarController();
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new GridLayout(11,0));
         setPreferredSize(new Dimension(300,800));
 //        setMaximumSize(new Dimension(300,80));
 //        setMinimumSize(new Dimension(25,80));
@@ -28,10 +28,11 @@ public class SidebarView extends JPanel {
         button.addMouseListener(listener);
         String text = "SLANG DICTIONARY";
         button.setName("SLANG DICTIONARY");
-        JLabel jlabel = new JLabel(text,JLabel.CENTER);
-        jlabel.setFont(new Font("Verdana", Font.BOLD,20));
+        JLabel jlabel = new JLabel(text,SwingConstants.CENTER);
+        jlabel.setForeground(new Color(254, 231, 21));
+        jlabel.setFont(new Font("Verdana", Font.BOLD,22));
         button.setOpaque(true);
-        button.setBackground(new Color(100, 149, 237));
+        button.setBackground(new Color(16, 24, 32));
         button.add(jlabel);
         button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -42,10 +43,11 @@ public class SidebarView extends JPanel {
         JPanel button = new JPanel();
         button.addMouseListener(listener);
         button.setName(text);
-        JLabel jlabel = new JLabel(text);
-        jlabel.setFont(new Font("Verdana", Font.BOLD,20));
+        JLabel jlabel = new JLabel(text,SwingConstants.CENTER);
+        jlabel.setForeground(new Color(255, 255, 255));
+        jlabel.setFont(new Font("Verdana", Font.BOLD,18));
         button.setOpaque(true);
-        button.setBackground(new Color(100, 149, 237));
+        button.setBackground(new Color(138, 170, 229));
         button.add(jlabel);
         button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
