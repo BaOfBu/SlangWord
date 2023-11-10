@@ -53,6 +53,10 @@ public class SidebarController implements MouseListener {
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new RandomQuizKeywordView());
                 break;
             }
+            case("RANDOM QUIZ DEFINITION"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new RandomQuizDefinitionView());
+                break;
+            }
         }
     }
 

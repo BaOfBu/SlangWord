@@ -22,7 +22,8 @@ public class Program {
         String line;
         while ((line = fout.readLine()) != null) {
             String[] values = line.split("`");
-            List<String> temp = new ArrayList<String>(Arrays.asList(values[1].split("\\|")));
+            List<String> temp = new ArrayList<String>(Arrays.asList(values[1].split("\\s*\\|\\s*")));
+
             List<String> definition = new ArrayList<>();
             definition.addAll(temp);
             dictionary.put(values[0], definition);

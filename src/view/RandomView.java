@@ -51,6 +51,12 @@ public class RandomView extends JPanel {
         container.add(addSearch());
         container.add(addResult());
         add(container,BorderLayout.CENTER);
+
+        randomInit();
+        boolean flag = setDatas();
+        if(flag) {
+            result.setModel(new DefaultTableModel(datas, columns));
+        }
     }
 
     private JPanel addTitle(){

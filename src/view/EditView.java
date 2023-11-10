@@ -43,7 +43,7 @@ public class EditView extends JPanel {
 
     private JPanel addTitle(){
         JPanel title = new JPanel();
-        String text = "Search by keyword";
+        String text = "EDIT SLANGWORD";
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));

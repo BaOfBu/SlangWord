@@ -12,13 +12,13 @@ public class SuccessFailQuizPopup {
         JLabel label = new JLabel(text,SwingConstants.CENTER);
         UltimateContainer.add(label,BorderLayout.NORTH);
         JPanel containerCenter = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton confirmButton = new JButton("Confirm");
-        confirmButton.setName("Confirm");
+        JButton confirmButton = new JButton("Continue");
+        confirmButton.setName("Continue");
         confirmButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Confirm")){
+                if (s.equals("Continue")){
                     frame.dispose();
                 }
             }
