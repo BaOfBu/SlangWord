@@ -7,15 +7,22 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
 
-public class EditView extends JPanel {
-    private String searchWord = null;
+public class RandomView extends JPanel {
+    private String randomWord = null;
+    private List<String> keyList = null;
+
     private String[] columns = {"No.","Keyword","Definition"};
     private String[][] datas = new String[][]{};
     JTable result = new JTable(1,3);
+    
+    private void randomInit(){
+        int size = keyList.size();
+        int randIdx = new Random().nextInt(size);
+        String randomWord = keyList.get(randIdx);
+    }
 
     private void setTableSize(){
         result.setFillsViewportHeight(true);
@@ -23,9 +30,15 @@ public class EditView extends JPanel {
         result.setRowHeight(40);
         result.setFont(new Font("Serif", Font.BOLD, 20));
     }
-    public EditView(){
+    public RandomView(){
+        //set up for random
+        HashMap<String, List<String>> map = Program.dictionary;
+        Set<String> keySet = map.keySet();
+        keyList = new ArrayList<>(keySet);
+
         setLayout(new BorderLayout());
         setTableSize();
+        randomInit();
 
         // add credit
         add(addTitle(),BorderLayout.NORTH);
@@ -38,7 +51,6 @@ public class EditView extends JPanel {
         container.add(addSearch());
         container.add(addResult());
         add(container,BorderLayout.CENTER);
-        add(addEdit(),BorderLayout.SOUTH);
     }
 
     private JPanel addTitle(){
@@ -53,44 +65,40 @@ public class EditView extends JPanel {
     }
 
     private boolean setDatas(){
-        List<String> definition = Program.dictionary.get(searchWord);
+        List<String> definition = Program.dictionary.get(randomWord);
         if(definition == null){
             return false;
         }
         else{
             datas = new String[definition.size()][3];
             for(int i = 0; i < definition.size() ; i++){
-                datas[i] = new String[]{Integer.toString(i), searchWord, definition.get(i)};
+                datas[i] = new String[]{Integer.toString(i+1), randomWord, definition.get(i)};
             };
             return true;
         }
     }
     private JPanel addSearch(){
         JPanel search = new JPanel(new FlowLayout());
-        search.setSize(700,100);
-        JTextField textField = new JTextField(32);
-        textField.setFont(new Font("Serif", Font.BOLD, 20));
-        JButton buttonSearch = new JButton("Search");
+        search.setSize(700,200);
+        JButton buttonSearch = new JButton("Random");
         buttonSearch.setSize(150,100);
         buttonSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Search")) {
+                if (s.equals("Random")) {
                     // set the text of the label to the text of the field
-                    searchWord = textField.getText();
+                    randomInit();
                     boolean flag = setDatas();
                     if(flag){
-                        Program.history.addFirst(searchWord);
                         result.setModel(new DefaultTableModel(datas,columns));
                     }
-
-                    // set the text of field to blank
-                    textField.setText("");
+                    else{
+                        CantFindWordPopup temp = new CantFindWordPopup(randomWord);
+                    }
                 }
             }
         });
-        search.add(textField);
         search.add(buttonSearch);
 
         return search;
@@ -105,38 +113,9 @@ public class EditView extends JPanel {
         result.getColumnModel().getColumn(2).setHeaderValue(columns[2]);
 
         panel.add(new JScrollPane(result),BorderLayout.CENTER);
-        panel.setSize(700,200);
+        panel.setSize(700,500);
         return panel;
     }
 
-    private JPanel addEdit(){
-        JPanel newDefinition = new JPanel(new FlowLayout());
-        newDefinition.setSize(700,100);
-        JTextField textField = new JTextField(32);
-        textField.setFont(new Font("Serif", Font.BOLD, 20));
-        JButton buttonSearch = new JButton("Edit");
-        buttonSearch.setSize(150,100);
-        buttonSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String s = e.getActionCommand();
-                if (s.equals("Edit")) {
-                    // set the text of the label to the text of the field
-                    ArrayList<String> strList = new ArrayList<String>(
-                            Arrays.asList(textField.getText()));
-                    Program.dictionary.replace(searchWord,strList);
-
-                    // set the text of field to blank
-                    textField.setText("");
-                }
-            }
-        });
-        newDefinition.add(textField);
-        newDefinition.add(buttonSearch);
-        JPanel container = new JPanel(new BorderLayout());
-        container.add(newDefinition);
-        container.setPreferredSize(new Dimension(700,100));
-        return container;
-    }
 
 }

@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ResetView extends JPanel {
@@ -45,7 +46,7 @@ public class ResetView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
                 if (s.equals("Reset")) {
-                    Program.dictionary = (HashMap<String, String>) Program.orgDictionary.clone();
+                    Program.dictionary = (HashMap<String, java.util.List<String>>) Program.orgDictionary.clone();
                 }
             }
         });

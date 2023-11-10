@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteView extends JPanel {
     private String[][] nullDatas = {};
@@ -41,7 +43,7 @@ public class DeleteView extends JPanel {
 
     private JPanel addTitle(){
         JPanel title = new JPanel();
-        String text = "Search by keyword";
+        String text = "Delete Slangword";
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));
@@ -51,12 +53,15 @@ public class DeleteView extends JPanel {
     }
 
     private boolean setDatas(){
-        String definition = Program.dictionary.get(searchWord);
+        List<String> definition = Program.dictionary.get(searchWord);
         if(definition == null){
             return false;
         }
         else{
-            datas = new String[][]{{"1", searchWord, definition}};
+            datas = new String[definition.size()][3];
+            for(int i = 0; i < definition.size() ; i++){
+                datas[i] = new String[]{Integer.toString(i), searchWord, definition.get(i)};
+            };
             return true;
         }
     }
@@ -100,8 +105,6 @@ public class DeleteView extends JPanel {
         result.getColumnModel().getColumn(0).setHeaderValue(columns[0]);
         result.getColumnModel().getColumn(1).setHeaderValue(columns[1]);
         result.getColumnModel().getColumn(2).setHeaderValue(columns[2]);
-
-        String definition = Program.dictionary.get(searchWord);
 
         panel.add(new JScrollPane(result),BorderLayout.CENTER);
         panel.setSize(700,200);

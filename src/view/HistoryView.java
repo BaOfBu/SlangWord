@@ -50,7 +50,7 @@ public class HistoryView extends JPanel{
         List<String> history = Program.history;
         datas = new String[history.size()][3];
         for(int i = 0; i < history.size(); i++){
-            datas[i] = new String[]{Integer.toString(i+1), history.get(i), Program.dictionary.get(history.get(i))};
+            datas[i] = new String[]{Integer.toString(i+1), history.get(i), String.join(", ",Program.dictionary.get(history.get(i)))};
         }
     }
 

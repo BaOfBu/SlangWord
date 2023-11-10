@@ -29,6 +29,10 @@ public class SidebarController implements MouseListener {
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new HistoryView());
                 break;
             }
+            case("ADD"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new AddView());
+                break;
+            }
             case("EDIT"):{
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new EditView());
                 break;
@@ -39,6 +43,10 @@ public class SidebarController implements MouseListener {
             }
             case("RESET"):{
                 SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new ResetView());
+                break;
+            }
+            case("RANDOM"):{
+                SidebarFrame frame = (SidebarFrame) SidebarFrame.getInstance(new RandomView());
                 break;
             }
         }

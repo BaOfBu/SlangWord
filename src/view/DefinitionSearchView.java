@@ -54,12 +54,18 @@ public class DefinitionSearchView extends JPanel{
     private boolean setDatas(){
         List<String> keyword = new ArrayList<String>();
         List<String> definition = new ArrayList<String>();
+
         Program.dictionary.forEach(
-                (key, value)
-                        -> {if(value.contains(searchDefinition)){
-            keyword.add(key);
-            definition.add(value);
-        }});
+                (key, value) ->
+                {
+                    for(String element:value){
+                        if(element.contains(searchDefinition)){
+                            keyword.add(key);
+                            definition.add(element);
+                        }
+                    }
+                });
+
         System.out.println(keyword.size());
         if(keyword.isEmpty()){
             return false;
@@ -86,7 +92,6 @@ public class DefinitionSearchView extends JPanel{
                 if (s.equals("Search")) {
                     // set the text of the label to the text of the field
                     searchDefinition = textField.getText();
-                    System.out.println(searchDefinition);
                     boolean flag = setDatas();
                     if(flag){
                         result.setModel(new DefaultTableModel(datas,columns));

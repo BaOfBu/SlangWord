@@ -11,11 +11,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EditView extends JPanel {
+public class AddView extends JPanel {
+    private boolean safe2add = false;
     private String searchWord = null;
+    private String newDefinition = null;
     private String[] columns = {"No.","Keyword","Definition"};
     private String[][] datas = new String[][]{};
-    JTable result = new JTable(1,3);
+    JTable result = new JTable(5,3);
 
     private void setTableSize(){
         result.setFillsViewportHeight(true);
@@ -23,7 +25,7 @@ public class EditView extends JPanel {
         result.setRowHeight(40);
         result.setFont(new Font("Serif", Font.BOLD, 20));
     }
-    public EditView(){
+    public AddView(){
         setLayout(new BorderLayout());
         setTableSize();
 
@@ -38,12 +40,13 @@ public class EditView extends JPanel {
         container.add(addSearch());
         container.add(addResult());
         add(container,BorderLayout.CENTER);
-        add(addEdit(),BorderLayout.SOUTH);
+
+        add(addAddButton(),BorderLayout.SOUTH);
     }
 
     private JPanel addTitle(){
         JPanel title = new JPanel();
-        String text = "Search by keyword";
+        String text = "ADD SLANGWORD";
         title.setName(text);
         JLabel jlabel = new JLabel(text);
         jlabel.setFont(new Font("Verdana", Font.BOLD,25));
@@ -67,30 +70,43 @@ public class EditView extends JPanel {
     }
     private JPanel addSearch(){
         JPanel search = new JPanel(new FlowLayout());
-        search.setSize(700,100);
-        JTextField textField = new JTextField(32);
-        textField.setFont(new Font("Serif", Font.BOLD, 20));
-        JButton buttonSearch = new JButton("Search");
+        search.setSize(700,200);
+        JTextField textFieldKey = new JTextField(8);
+        textFieldKey.setFont(new Font("Serif", Font.BOLD, 20));
+        JTextField textFieldValue = new JTextField(24);
+        textFieldValue.setFont(new Font("Serif", Font.BOLD, 20));
+        JButton buttonSearch = new JButton("AddSlangword");
         buttonSearch.setSize(150,100);
         buttonSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Search")) {
+                if (s.equals("AddSlangword")) {
                     // set the text of the label to the text of the field
-                    searchWord = textField.getText();
+                    searchWord = textFieldKey.getText();
+                    newDefinition = textFieldValue.getText();
                     boolean flag = setDatas();
                     if(flag){
-                        Program.history.addFirst(searchWord);
+                        safe2add = false;
                         result.setModel(new DefaultTableModel(datas,columns));
+                    }
+                    else{
+                        safe2add = true;
+                        ArrayList<String> Definition = new ArrayList<String>(
+                                Arrays.asList(newDefinition));
+                        Program.dictionary.put(searchWord,Definition);
+                        AddSuccessfulPopup temp = new AddSuccessfulPopup();
+                        textFieldKey.setText("");
+                        textFieldValue.setText("");
                     }
 
                     // set the text of field to blank
-                    textField.setText("");
+
                 }
             }
         });
-        search.add(textField);
+        search.add(textFieldKey);
+        search.add(textFieldValue);
         search.add(buttonSearch);
 
         return search;
@@ -109,34 +125,28 @@ public class EditView extends JPanel {
         return panel;
     }
 
-    private JPanel addEdit(){
-        JPanel newDefinition = new JPanel(new FlowLayout());
-        newDefinition.setSize(700,100);
-        JTextField textField = new JTextField(32);
-        textField.setFont(new Font("Serif", Font.BOLD, 20));
-        JButton buttonSearch = new JButton("Edit");
-        buttonSearch.setSize(150,100);
-        buttonSearch.addActionListener(new ActionListener() {
+    private JPanel addAddButton(){
+        JPanel panel = new JPanel(new FlowLayout());
+
+        JButton addButton = new JButton("ADD");
+        addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("Edit")) {
-                    // set the text of the label to the text of the field
-                    ArrayList<String> strList = new ArrayList<String>(
-                            Arrays.asList(textField.getText()));
-                    Program.dictionary.replace(searchWord,strList);
-
-                    // set the text of field to blank
-                    textField.setText("");
+                if (s.equals("ADD")) {
+                    if(safe2add){
+                        ArrayList<String> strList = new ArrayList<String>(
+                                Arrays.asList(newDefinition));
+                        Program.dictionary.put(searchWord,strList);
+                    }
+                    else{
+                        OverwritePopup temp = new OverwritePopup(searchWord,newDefinition);
+                    }
                 }
             }
         });
-        newDefinition.add(textField);
-        newDefinition.add(buttonSearch);
-        JPanel container = new JPanel(new BorderLayout());
-        container.add(newDefinition);
-        container.setPreferredSize(new Dimension(700,100));
-        return container;
+        panel.add(addButton);
+        return panel;
     }
 
 }
