@@ -46,7 +46,11 @@ public class ResetView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
                 if (s.equals("Reset")) {
-                    Program.dictionary = (HashMap<String, java.util.List<String>>) Program.orgDictionary.clone();
+                    try {
+                        Program.ResetDictionary();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
         });

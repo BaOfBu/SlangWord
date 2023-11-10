@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaSlangWord:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaSlangWord_jar</output-path>
+    <root id="archive" name="JavaSlangWord.jar">
+      <element id="module-output" name="JavaSlangWord" />
+    </root>
+  </artifact>
+</component>

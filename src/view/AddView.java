@@ -128,12 +128,12 @@ public class AddView extends JPanel {
     private JPanel addAddButton(){
         JPanel panel = new JPanel(new FlowLayout());
 
-        JButton addButton = new JButton("ADD");
+        JButton addButton = new JButton("Continue to add above word");
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = e.getActionCommand();
-                if (s.equals("ADD")) {
+                if (s.equals("Continue to add above word")) {
                     if(safe2add){
                         ArrayList<String> strList = new ArrayList<String>(
                                 Arrays.asList(newDefinition));

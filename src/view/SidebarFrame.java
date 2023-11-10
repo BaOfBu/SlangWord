@@ -1,7 +1,19 @@
 package view;
 
+import Main.Program;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public class SidebarFrame extends JFrame {
 
@@ -29,6 +41,50 @@ public class SidebarFrame extends JFrame {
             setSize(1000,800);
             setLocationRelativeTo(null);
             setVisible(true);
+
+
+            this.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    try {
+                        BufferedWriter fout = new BufferedWriter(new FileWriter(new File("./resources/newSlangword.txt")));
+                        fout.write("KEY`VALUE");
+                        fout.newLine();
+                        Program.dictionary.forEach(
+                                (key, value) ->
+                                {
+                                    String definition = "";
+                                    String prefix = "";
+                                    for(String element:value){
+                                        definition = definition + prefix;
+                                        prefix = "|";
+                                        definition = definition + element;
+                                    }
+                                    try {
+                                        fout.write(key + "`" + definition);
+                                        fout.newLine();
+                                    } catch (IOException ex) {
+                                        throw new RuntimeException(ex);
+                                    }
+                                });
+                        fout.close();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    try {
+                        BufferedWriter fout = new BufferedWriter(new FileWriter(new File("./resources/history.txt")));
+                        for(String item:Program.history){
+                            fout.write(item);
+                            fout.newLine();
+                        }
+                        fout.close();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    super.windowClosing(e);
+                }
+            });
         }
     }
     public static JFrame getInstance(JPanel ContentReplace){
