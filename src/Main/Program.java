@@ -32,7 +32,7 @@ public class Program {
     }
     public static void main(String[] args) throws Exception {
         ReadFile();
-        System.out.println(dictionary.size());
+        //System.out.println(dictionary.size());
         SwingUtilities.invokeLater(()->new SidebarFrame(new HomepageView()).setVisible(true));
     }
 }

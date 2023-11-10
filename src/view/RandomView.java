@@ -12,7 +12,7 @@ import java.util.List;
 
 public class RandomView extends JPanel {
     private String randomWord = null;
-    private List<String> keyList = null;
+    private List<String> keyList;
 
     private String[] columns = {"No.","Keyword","Definition"};
     private String[][] datas = new String[][]{};

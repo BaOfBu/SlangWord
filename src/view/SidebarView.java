@@ -28,11 +28,12 @@ public class SidebarView extends JPanel {
         button.addMouseListener(listener);
         String text = "SLANG DICTIONARY";
         button.setName("SLANG DICTIONARY");
-        JLabel jlabel = new JLabel(text);
+        JLabel jlabel = new JLabel(text,JLabel.CENTER);
         jlabel.setFont(new Font("Verdana", Font.BOLD,20));
         button.setOpaque(true);
         button.setBackground(new Color(100, 149, 237));
         button.add(jlabel);
+        button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         container.add(button);
     }
@@ -46,6 +47,7 @@ public class SidebarView extends JPanel {
         button.setOpaque(true);
         button.setBackground(new Color(100, 149, 237));
         button.add(jlabel);
+        button.setBorder(BorderFactory.createLineBorder(Color.black));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         container.add(button);
     }
